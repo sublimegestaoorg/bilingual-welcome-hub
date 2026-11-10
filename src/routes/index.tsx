@@ -1,49 +1,34 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { SiteHeader } from "@/components/SiteHeader";
-import { FUNCTIONAL_MODULES } from "@/lib/modules-data";
-import {
-  AI_CAPABILITIES_5_1,
-  RAG_PIPELINE_STEPS_5_4,
-  TECH_STACK_6_0,
-  DATABASE_GROUPS_6_2,
-  SAAS_COMPARISON_MATRIX_7,
-  SECURITY_CONTROLS_9,
-  ANTIGRAVITY_ROADMAP_10,
-  MVP_SCOPE_12,
-  SIX_STRATEGIC_PILLARS,
-  EQUIPMENT_12_FIELDS_SAMPLE,
-  FOUR_MACRO_STAGES,
-} from "@/lib/ai-architecture-data";
-import { MonolithTreeExplorer } from "@/components/technical/MonolithTreeExplorer";
+import { SAAS_COMPARISON_MATRIX_7 } from "@/lib/ai-architecture-data";
 import {
   BookOpen,
   Cpu,
   Sliders,
   Wrench,
-  CheckCircle2,
   ArrowRight,
   Sparkles,
-  Scale,
-  Layers,
-  Database,
-  Server,
+  Play,
+  GraduationCap,
+  Building2,
+  CheckCircle2,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NexVolt — Intelligence & Engineering | Ecossistema de Conhecimento Técnico" },
+      { title: "NexVolt — Intelligence & Engineering | Elétrica, Automação e IA" },
       {
         name: "description",
         content:
-          "Conhecimento técnico. Inteligência. Soluções. Biblioteca técnica, inteligência artificial, automação e ferramentas para elétrica e engenharia.",
+          "Conhecimento técnico. Inteligência. Soluções. Biblioteca técnica, diagnóstico por IA com fontes, simulador de instalações e calculadoras de engenharia.",
       },
       { property: "og:title", content: "NexVolt — Intelligence & Engineering" },
       {
         property: "og:description",
         content:
-          "Ecossistema técnico de elétrica, automação, comandos, manutenção e inteligência artificial.",
+          "Plataforma técnica de elétrica, automação, comandos, manutenção e inteligência artificial.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -54,18 +39,99 @@ export const Route = createFileRoute("/")({
 
 const pillarIcons = [BookOpen, Cpu, Sliders, Wrench];
 
+const SIX_CORES = [
+  {
+    num: "01",
+    icon: Cpu,
+    titlePt: "IA Especialista",
+    titleEn: "Specialist AI",
+    subPt: "Perguntas, diagnóstico e projetos",
+    subEn: "Questions, diagnostics & projects",
+    descPt:
+      "Orquestrador central com 8 especialistas (Elétrica, Comandos, Automação, CLP, Eletrônica, Instrumentação, Manutenção e Solar) e citação obrigatória da página do manual.",
+    descEn:
+      "Central orchestrator with 8 domain specialists and mandatory manual page citations.",
+    to: "/ai" as const,
+  },
+  {
+    num: "02",
+    icon: BookOpen,
+    titlePt: "Conhecimento Técnico",
+    titleEn: "Technical Knowledge",
+    subPt: "Fabricantes, manuais e falhas",
+    subEn: "Manufacturers, manuals & faults",
+    descPt:
+      "Catálogo estruturado de equipamentos (WEG, Siemens, Schneider, ABB, Danfoss, Omron), datasheets versionados e códigos de erro por modelo.",
+    descEn:
+      "Structured equipment catalog, versioned datasheets, and fault codes indexed by exact model.",
+    to: "/dashboard" as const,
+  },
+  {
+    num: "03",
+    icon: Play,
+    titlePt: "Simulação Digital",
+    titleEn: "Digital Simulation",
+    subPt: "Circuitos, comandos, CLP e instalações",
+    subEn: "Circuits, controls, PLC & installations",
+    descPt:
+      "Bancada interativa com 5 motores validáveis para montar partidas de motores, testar intertravamentos e desenvolver lógicas Ladder antes da execução física.",
+    descEn:
+      "Interactive workbench with 5 validated engines to assemble motor starters, test interlocks, and simulate PLC logic.",
+    to: "/simulator" as const,
+  },
+  {
+    num: "04",
+    icon: Wrench,
+    titlePt: "Ferramentas de Engenharia",
+    titleEn: "Engineering Tools",
+    subPt: "Cálculos e dimensionamento",
+    subEn: "Calculations & sizing",
+    descPt:
+      "Calculadoras independentes para Lei de Ohm, potência trifásica, queda de tensão, condutores, fator de potência e malhas 4–20 mA.",
+    descEn:
+      "Standalone calculators for Ohm's Law, three-phase power, voltage drop, cable sizing, and 4–20 mA loops.",
+    to: "/tools" as const,
+  },
+  {
+    num: "05",
+    icon: GraduationCap,
+    titlePt: "Aprendizado & Módulos",
+    titleEn: "Learning & Modules",
+    subPt: "Cursos, trilhas e 16 módulos",
+    subEn: "Courses, tracks & 16 modules",
+    descPt:
+      "Trilhas estruturadas do básico ao avançado, projetos comentados, listas de materiais e comunidade técnica revisada.",
+    descEn:
+      "Structured tracks from fundamentals to advanced automation, annotated projects, and verified community.",
+    to: "/modules" as const,
+  },
+  {
+    num: "06",
+    icon: Building2,
+    titlePt: "Ambiente Empresas",
+    titleEn: "Enterprise Hub",
+    subPt: "Equipes, ativos e manutenção",
+    subEn: "Teams, assets & maintenance",
+    descPt:
+      "Gestão multi-tenant com isolamento RLS para plantas industriais, ordens de manutenção preventiva/corretiva e controle de permissões por função.",
+    descEn:
+      "Multi-tenant management with RLS isolation for plant assets, maintenance work orders, and role permissions.",
+    to: "/enterprise" as const,
+  },
+];
+
 function Index() {
   const { t, lang } = useI18n();
   const isPt = lang === "pt";
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <SiteHeader />
 
-      {/* HERO & 4 PILLARS */}
+      {/* 1. HERO & 4 PILLARS */}
       <section className="grid-bg border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/10 px-3.5 py-1 font-mono text-xs uppercase tracking-[0.18em] text-primary">
             ⚡ {t.brand.name} · {t.brand.sub}
           </div>
 
@@ -75,15 +141,11 @@ function Index() {
 
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{t.hero.sub}</p>
 
-          {/* Ecosystem domains */}
-          <div className="mt-6 flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span className="text-muted-foreground uppercase tracking-wider">
-              {t.brand.ecosystem}:
-            </span>
+          <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs">
             {t.brand.domains.map((domain) => (
               <span
                 key={domain}
-                className="rounded border border-border bg-card/80 px-2.5 py-1 text-foreground"
+                className="rounded-md border border-border bg-card/85 px-2.5 py-1 text-foreground"
               >
                 {domain}
               </span>
@@ -91,37 +153,38 @@ function Index() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#environments"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 font-medium text-primary-foreground shadow-glow transition hover:brightness-110"
-            >
-              {t.hero.cta}
-              <ArrowRight className="h-4 w-4" />
-            </a>
             <Link
-              to="/tools"
-              className="rounded-md border border-border bg-card/60 px-5 py-3 font-medium hover:bg-secondary"
+              to="/dashboard"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
             >
-              {t.hero.cta2}
+              {isPt ? "Acessar Plataforma" : "Open Platform"}
+              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/ai"
-              className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-5 py-3 font-medium text-primary hover:bg-primary/20"
+              className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-5 py-3 text-sm font-medium text-primary hover:bg-primary/20"
             >
               <Sparkles className="h-4 w-4" />
-              {t.nav.ai}
+              {isPt ? "Assistente Técnico IA" : "AI Technical Assistant"}
+            </Link>
+            <Link
+              to="/simulator"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-card/80 px-5 py-3 text-sm font-medium hover:bg-secondary"
+            >
+              <Play className="h-4 w-4 text-primary" />
+              {isPt ? "Simulador de Instalações" : "Installation Simulator"}
             </Link>
           </div>
 
-          {/* 4 Main Pillars from specification header */}
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* 4 Main Pillars */}
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {t.pillars.map((pillar, i) => {
               const Icon = pillarIcons[i] ?? BookOpen;
               return (
                 <Link
                   key={pillar.tag}
                   to={pillar.href}
-                  className="group relative flex flex-col justify-between rounded-lg border border-border bg-card/90 p-5 transition-all hover:border-primary/60 hover:bg-secondary/70"
+                  className="group flex flex-col justify-between rounded-lg border border-border bg-card/90 p-5 transition-all hover:border-primary/60 hover:bg-secondary/60"
                 >
                   <div>
                     <div className="flex items-center justify-between">
@@ -131,7 +194,9 @@ function Index() {
                       <Icon className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
                     </div>
                     <h2 className="mt-2 font-display text-lg font-bold">{pillar.title}</h2>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{pillar.desc}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {pillar.desc}
+                    </p>
                   </div>
                   <span className="mt-4 inline-flex items-center gap-1 font-mono text-xs text-primary">
                     {t.environmentsSection.openBtn}
@@ -141,562 +206,207 @@ function Index() {
               );
             })}
           </div>
-
-          <p className="mt-6 font-mono text-xs text-muted-foreground">{t.brand.provisionalNote}</p>
         </div>
       </section>
 
-      {/* ESTRUTURA DE 6 PILARES PRINCIPAIS + SIMULADOR & FICHA TÉCNICA DE 12 CAMPOS */}
-      <section className="border-b border-border bg-card/20 py-20">
+      {/* 2. OS 6 GRANDES NÚCLEOS CONECTADOS */}
+      <section className="border-b border-border py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                {isPt ? "ESTRUTURA ESTRATÉGICA DA PLATAFORMA" : "STRATEGIC PLATFORM STRUCTURE"}
-              </p>
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                {isPt ? "ECOSSISTEMA INTEGRADO" : "INTEGRATED ECOSYSTEM"}
+              </span>
               <h2 className="mt-2 font-display text-3xl font-bold">
                 {isPt
-                  ? "6 Núcleos Tecnológicos: IA, Diagnóstico, Simulador, Biblioteca e Laboratórios"
-                  : "6 Core Technological Pillars: AI, Diagnostics, Simulator, Library & Labs"}
+                  ? "Seis grandes núcleos conectados à mesma base técnica"
+                  : "Six connected cores sharing a unified technical knowledge base"}
               </h2>
+              <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+                {isPt
+                  ? "Encontre um equipamento no catálogo, consulte o manual oficial, investigue uma falha com a IA e utilize o mesmo componente no simulador."
+                  : "Find an equipment model in the catalog, read its official manual, diagnose a fault with AI, and test it in the simulator."}
+              </p>
             </div>
-            <Link
-              to="/simulator"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-glow"
-            >
-              {isPt ? "Abrir Simulador & Projetos IA" : "Open Simulator & AI Projects"}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SIX_STRATEGIC_PILLARS.map((pillar) => (
-              <Link
-                key={pillar.num}
-                to={pillar.route}
-                className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary/60 hover:bg-secondary/40"
-              >
-                <div className="relative h-44 w-full overflow-hidden bg-secondary">
-                  <img
-                    src={pillar.image}
-                    alt={isPt ? pillar.titlePt : pillar.titleEn}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
-                  <span className="absolute left-3 top-3 rounded bg-background/90 px-2.5 py-0.5 font-mono text-xs font-bold text-primary">
-                    {pillar.num} · {isPt ? pillar.badgePt : pillar.badgeEn}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col justify-between p-5">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {SIX_CORES.map((core) => {
+              const Icon = core.icon;
+              return (
+                <Link
+                  key={core.num}
+                  to={core.to}
+                  className="group flex flex-col justify-between rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/60 hover:bg-secondary/40"
+                >
                   <div>
-                    <h3 className="font-display text-lg font-bold group-hover:text-primary">
-                      {isPt ? pillar.titlePt : pillar.titleEn}
+                    <div className="flex items-center justify-between">
+                      <span className="rounded bg-primary/15 px-2.5 py-1 font-mono text-xs font-bold text-primary">
+                        NÚCLEO {core.num}
+                      </span>
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-primary">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                    </div>
+                    <h3 className="mt-4 font-display text-xl font-bold group-hover:text-primary">
+                      {isPt ? core.titlePt : core.titleEn}
                     </h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                      {isPt ? pillar.descPt : pillar.descEn}
+                    <p className="mt-0.5 font-mono text-xs text-primary">
+                      {isPt ? core.subPt : core.subEn}
+                    </p>
+                    <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                      {isPt ? core.descPt : core.descEn}
                     </p>
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-1 font-mono text-xs text-primary">
-                    {pillar.route}
+
+                  <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs font-medium text-foreground group-hover:text-primary">
+                    {isPt ? "Acessar núcleo" : "Open core"}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Ficha Estruturada de 12 Campos por Equipamento + 4 Macro Etapas */}
-          <div className="mt-10 grid gap-6 lg:grid-cols-12">
-            <div className="rounded-lg border border-border bg-card p-6 lg:col-span-7">
-              <span className="font-mono text-xs uppercase text-primary">
-                {isPt
-                  ? "BANCO DE DADOS TÉCNICO · 12 CAMPOS ESTRUTURADOS POR EQUIPAMENTO"
-                  : "TECHNICAL DATABASE · 12 STRUCTURED FIELDS PER EQUIPMENT"}
-              </span>
-              <h3 className="mt-1 font-display text-xl font-bold">
-                {isPt
-                  ? "Documentos transformados em dados relacionais (WEG, Siemens, Schneider, ABB, Danfoss, Allen-Bradley, Mitsubishi, Omron)"
-                  : "Documents transformed into structured relational records"}
-              </h3>
-              <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-                {EQUIPMENT_12_FIELDS_SAMPLE.map((item) => (
-                  <div
-                    key={item.fieldPt}
-                    className="rounded border border-border/70 bg-background/50 p-2.5 text-xs"
-                  >
-                    <span className="block font-mono text-[10px] uppercase text-primary">
-                      {isPt ? item.fieldPt : item.fieldEn}
-                    </span>
-                    <span className="font-medium text-foreground">{item.example}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-lg border border-border bg-card p-6 lg:col-span-5">
-              <span className="font-mono text-xs uppercase text-primary">
-                {isPt
-                  ? "RECOMENDAÇÃO DE EXECUÇÃO · 4 GRANDES ETAPAS"
-                  : "EXECUTION RECOMMENDATION · 4 MACRO STAGES"}
-              </span>
-              <div className="mt-3 space-y-3">
-                {FOUR_MACRO_STAGES.map((st) => (
-                  <div
-                    key={st.stage}
-                    className="rounded border border-border/70 bg-background/50 p-3 text-xs"
-                  >
-                    <span className="font-mono font-bold text-primary">{st.stage} — </span>
-                    <strong className="text-foreground">
-                      {isPt ? st.titlePt : st.titleEn}
-                    </strong>
-                    <p className="mt-1 text-muted-foreground">
-                      {isPt ? st.descPt : st.descEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* 1. VISÃO E POSICIONAMENTO */}
-      <section id="vision" className="border-b border-border py-20">
+      {/* 3. PROPOSTA DE VALOR & DIFERENCIAL */}
+      <section className="border-b border-border bg-card/30 py-20">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-            {t.vision.sectionTag}
-          </p>
-          <h2 className="mt-2 max-w-3xl font-display text-3xl font-bold">{t.vision.title}</h2>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-12">
-            <div className="space-y-6 lg:col-span-5">
-              <div className="rounded-lg border border-border bg-card p-6">
-                <span className="font-mono text-xs uppercase tracking-wider text-primary">
-                  {t.vision.missionLabel}
-                </span>
-                <p className="mt-2 text-base leading-relaxed text-foreground">
-                  {t.vision.mission}
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-primary/40 bg-primary/5 p-6">
-                <span className="font-mono text-xs uppercase tracking-wider text-primary">
+          <div className="grid gap-8 lg:grid-cols-12">
+            <div className="space-y-4 lg:col-span-5">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                {t.vision.sectionTag}
+              </span>
+              <h2 className="font-display text-3xl font-bold">{t.vision.title}</h2>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {t.vision.mission}
+              </p>
+              <div className="rounded-lg border border-primary/40 bg-primary/10 p-4 text-sm text-foreground">
+                <strong className="block font-mono text-xs uppercase text-primary">
                   {t.vision.differentialLabel}
-                </span>
-                <p className="mt-2 text-base leading-relaxed text-foreground">
-                  {t.vision.differential}
-                </p>
+                </strong>
+                <span className="mt-1 block">{t.vision.differential}</span>
               </div>
             </div>
 
-            <div className="rounded-lg border border-border bg-card p-6 lg:col-span-7">
-              <h3 className="font-display text-lg font-semibold">{t.vision.valuePropsTitle}</h3>
-              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {t.vision.valueProps.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2.5 rounded-md border border-border/60 bg-background/50 p-3 text-sm"
-                  >
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. NOME E IDENTIDADE DA MARCA */}
-      <section id="brand" className="border-b border-border bg-card/30 py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-            <Scale className="h-3.5 w-3.5" />
-            {t.branding.sectionTag}
-          </div>
-          <h2 className="mt-2 font-display text-3xl font-bold">{t.branding.title}</h2>
-          <p className="mt-3 max-w-3xl text-muted-foreground">{t.branding.rationale}</p>
-
-          <div className="mt-8 grid gap-6 lg:grid-cols-12">
-            <div className="overflow-hidden rounded-lg border border-border bg-card lg:col-span-8">
-              <table className="w-full text-left text-sm">
-                <thead className="border-b border-border bg-secondary/60 font-mono text-xs uppercase text-muted-foreground">
-                  <tr>
-                    <th className="px-4 py-3">{t.branding.columns[0]}</th>
-                    <th className="px-4 py-3">{t.branding.columns[1]}</th>
-                    <th className="px-4 py-3">{t.branding.columns[2]}</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  {t.branding.candidates.map(([name, pos, status], idx) => (
-                    <tr
-                      key={name}
-                      className={idx === 0 ? "bg-primary/10 font-medium" : "hover:bg-secondary/40"}
-                    >
-                      <td className="px-4 py-3 font-display">
-                        {name}
-                        {idx === 0 && (
-                          <span className="ml-2 rounded bg-primary px-1.5 py-0.5 font-mono text-[10px] text-primary-foreground">
-                            ★
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-4 py-3 text-muted-foreground">{pos}</td>
-                      <td className="px-4 py-3 font-mono text-xs">
-                        <span
-                          className={
-                            idx === 0
-                              ? "rounded-full border border-primary/50 bg-primary/20 px-2.5 py-0.5 text-primary"
-                              : "text-muted-foreground"
-                          }
-                        >
-                          {status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="rounded-lg border border-border bg-card p-6 lg:col-span-4">
-              <h3 className="font-mono text-xs uppercase tracking-wider text-primary">
-                INPI & Due Diligence
-              </h3>
-              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-                {t.branding.checklist.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. ESTRUTURA GERAL DO SISTEMA (OS 4 GRANDES AMBIENTES) */}
-      <section id="environments" className="border-b border-border py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-            <Layers className="h-3.5 w-3.5" />
-            {t.environmentsSection.sectionTag}
-          </div>
-          <h2 className="mt-2 font-display text-3xl font-bold">{t.environmentsSection.title}</h2>
-          <p className="mt-2 text-muted-foreground">{t.environmentsSection.sub}</p>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {t.environmentsSection.items.map((env) => (
-              <div
-                key={env.id}
-                className="flex flex-col justify-between rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/60"
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="rounded border border-primary/40 bg-primary/10 px-2.5 py-1 font-mono text-xs font-bold text-primary">
-                      AMBIENTE {env.id}
-                    </span>
-                    <span className="font-mono text-xs text-muted-foreground">{env.route}</span>
-                  </div>
-                  <h3 className="mt-4 font-display text-2xl font-bold">{env.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{env.summary}</p>
-                  <ul className="mt-4 space-y-2 border-t border-border/60 pt-4 text-sm">
-                    {env.bullets.map((b) => (
-                      <li key={b} className="flex items-center gap-2 text-muted-foreground">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
+            <div className="grid gap-3 sm:grid-cols-2 lg:col-span-7">
+              {t.vision.valueProps.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-2.5 rounded-lg border border-border bg-card p-4 text-sm"
+                >
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span>{item}</span>
                 </div>
-
-                <div className="mt-6 pt-2">
-                  <Link
-                    to={env.route}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-secondary px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
-                  >
-                    {t.environmentsSection.openBtn}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 16 CONNECTED MODULES */}
+      {/* 4. 16 MÓDULOS CONECTADOS (CLEAN COMPACT GRID) */}
       <section id="modules" className="mx-auto max-w-6xl px-5 py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-              04 · ARQUITETURA MODULAR (01–16)
-            </p>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+              {isPt ? "ARQUITETURA FUNCIONAL" : "FUNCTIONAL ARCHITECTURE"}
+            </span>
             <h2 className="mt-2 font-display text-3xl font-bold">{t.modulesTitle}</h2>
-            <p className="mt-2 max-w-2xl text-muted-foreground">{t.modulesSub}</p>
+            <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t.modulesSub}</p>
           </div>
           <Link
             to="/modules"
-            className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20"
+            className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-semibold text-primary hover:bg-primary/20"
           >
-            {t.nav.modules} (01–16)
-            <ArrowRight className="h-4 w-4" />
+            {isPt ? "Explorar os 16 Módulos" : "Explore All 16 Modules"}
+            <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {FUNCTIONAL_MODULES.map((mod, i) => {
-            const [name, desc] = t.modules[i] ?? [mod.titlePt, mod.descPt];
-            return (
-              <Link
-                key={mod.num}
-                to="/modules"
-                className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary/60 hover:bg-secondary/50"
-              >
-                <div className="relative h-36 w-full overflow-hidden bg-secondary">
-                  <img
-                    src={mod.image}
-                    alt={mod.imageAlt}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <span className="absolute left-3 top-3 rounded bg-background/90 px-2 py-0.5 font-mono text-xs font-bold text-primary">
-                    {mod.num}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col justify-between p-4">
-                  <div>
-                    <h3 className="font-display text-base font-semibold group-hover:text-primary">
-                      {name}
-                    </h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{desc}</p>
-                  </div>
-                  <span className="mt-4 inline-flex items-center gap-1 font-mono text-[11px] text-primary">
-                    {mod.environmentRoute}
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 5. O CORAÇÃO DA PLATAFORMA: ASSISTENTE TÉCNICO IA & RAG */}
-      <section id="ai-architecture" className="border-t border-border bg-card/30 py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                <Database className="h-3.5 w-3.5" />
-                {isPt
-                  ? "05 · O CORAÇÃO DA PLATAFORMA: ASSISTENTE TÉCNICO IA"
-                  : "05 · THE HEART OF THE PLATFORM: AI TECHNICAL ASSISTANT"}
-              </div>
-              <h2 className="mt-2 font-display text-3xl font-bold">
-                {isPt
-                  ? "Sistema de IA Especializado com Base Documental Controlada (RAG)"
-                  : "Specialized AI System with Controlled Documentary RAG"}
-              </h2>
-              <p className="mt-2 max-w-3xl text-muted-foreground">
-                {isPt
-                  ? "Não é apenas um chatbot conectado a uma API: combina orquestrador de intenção, esteira RAG de 10 etapas, busca híbrida (textual + vetorial pgvector) e citação obrigatória de página, versão e data."
-                  : "More than a raw chatbot API: combines an intent orchestrator, a 10-stage RAG pipeline, hybrid search (full-text + pgvector), and mandatory page, version, and date citations."}
-              </p>
-            </div>
+        <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {t.modules.map(([name, desc], i) => (
             <Link
-              to="/ai"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-glow"
+              key={name}
+              to="/modules"
+              className="group flex flex-col justify-between bg-card p-5 transition-colors hover:bg-secondary/70"
             >
-              {isPt ? "Testar Diagnóstico em 8 Etapas" : "Try 8-Step Diagnostic"}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          {/* 5.1 8 Capabilities Table/Cards */}
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {AI_CAPABILITIES_5_1.map((cap) => (
-              <div
-                key={cap.id}
-                className="rounded-lg border border-border bg-card p-4"
-              >
-                <p className="font-display text-sm font-bold text-primary">
-                  {isPt ? cap.namePt : cap.nameEn}
-                </p>
-                <p className="mt-1 text-xs font-medium text-foreground">
-                  {isPt ? cap.funcPt : cap.funcEn}
-                </p>
-                <p className="mt-1.5 text-[11px] text-muted-foreground">
-                  {isPt ? cap.demoPt : cap.demoEn}
-                </p>
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs font-bold text-primary">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <ArrowRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-primary" />
+                </div>
+                <h3 className="mt-2 font-display text-base font-semibold group-hover:text-primary">
+                  {name}
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{desc}</p>
               </div>
-            ))}
-          </div>
-
-          {/* 5.4 10-Stage RAG Pipeline */}
-          <div className="mt-8 rounded-lg border border-border bg-card p-6">
-            <h3 className="font-mono text-xs uppercase tracking-wider text-primary">
-              {isPt
-                ? "5.4 Esteira de Processamento RAG (10 Etapas) + Regra Anti-Alucinação"
-                : "5.4 10-Stage RAG Processing Pipeline + Anti-Hallucination Rule"}
-            </h3>
-            <div className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
-              {RAG_PIPELINE_STEPS_5_4.map((s) => (
-                <div
-                  key={s.step}
-                  className="rounded border border-border/70 bg-background/50 p-3 text-xs"
-                >
-                  <span className="font-mono font-bold text-primary">{s.step}.</span>{" "}
-                  <span className="font-medium">{isPt ? s.pt : s.en}</span>
-                  <span className="mt-1 block font-mono text-[10px] text-muted-foreground">
-                    {s.tech}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* 6. ARQUITETURA TECNOLÓGICA COMPLETA & 6.1 MONÓLITO MODULAR */}
-      <section id="tech-stack" className="border-t border-border py-20">
+      {/* 5. PLANOS E ASSINATURAS */}
+      <section id="plans" className="border-t border-border bg-card/30 py-20">
         <div className="mx-auto max-w-6xl px-5">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-            <Server className="h-3.5 w-3.5" />
-            {isPt
-              ? "06 · ARQUITETURA TECNOLÓGICA COMPLETA (MONÓLITO MODULAR)"
-              : "06 · COMPLETE TECHNOLOGY ARCHITECTURE (MODULAR MONOLITH)"}
-          </div>
-          <h2 className="mt-2 font-display text-3xl font-bold">
-            {isPt
-              ? "Stack moderna integrada ao Google Antigravity, sem complexidade desnecessária"
-              : "Modern stack integrated with Google Antigravity, without unnecessary complexity"}
-          </h2>
-          <p className="mt-2 max-w-3xl text-muted-foreground">
-            {isPt
-              ? "6.1 Arquitetura de aplicação: iniciamos com um monólito modular bem estruturado (16 módulos desacoplados), evitando a sobrecarga operacional de dezenas de microsserviços."
-              : "6.1 Application architecture: starting with a clean modular monolith (16 decoupled modules), avoiding the operational overhead of dozens of microservices."}
-          </p>
-
-          <div className="mt-8 overflow-hidden rounded-lg border border-border bg-card">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-border bg-secondary/60 font-mono text-xs uppercase text-muted-foreground">
-                <tr>
-                  <th className="px-4 py-3">{isPt ? "Camada" : "Layer"}</th>
-                  <th className="px-4 py-3">
-                    {isPt ? "Tecnologia recomendada" : "Recommended technology"}
-                  </th>
-                  <th className="hidden px-4 py-3 md:table-cell">
-                    {isPt ? "Papel na arquitetura" : "Architectural role"}
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {TECH_STACK_6_0.map((row) => (
-                  <tr key={row.layerPt} className="hover:bg-secondary/30">
-                    <td className="px-4 py-2.5 font-medium">
-                      {isPt ? row.layerPt : row.layerEn}
-                    </td>
-                    <td className="px-4 py-2.5 font-mono text-xs text-primary">
-                      {row.tech}
-                    </td>
-                    <td className="hidden px-4 py-2.5 text-xs text-muted-foreground md:table-cell">
-                      {isPt ? row.detailPt : row.detailEn}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-10">
-            <h3 className="mb-4 font-display text-2xl font-bold">
-              {isPt
-                ? "Referência Arquitetural do Monólito Modular (NEXVOLT/)"
-                : "Modular Monolith Architectural Reference (NEXVOLT/)"}
-            </h3>
-            <MonolithTreeExplorer />
-          </div>
-
-          {/* 6.2 BANCO DE DADOS */}
-          <div className="mt-12 rounded-lg border border-border bg-card p-6">
-            <span className="font-mono text-xs uppercase text-primary">
-              {isPt
-                ? "6.2 BANCO DE DADOS POSTGRESQL (12 GRUPOS + RLS)"
-                : "6.2 POSTGRESQL DATABASE (12 GROUPS + RLS)"}
-            </span>
-            <h3 className="mt-1 font-display text-2xl font-bold">
-              {isPt
-                ? "Modelagem para usuários individuais e empresas com isolamento rigoroso"
-                : "Schema designed for individuals and enterprises with strict tenant isolation"}
-            </h3>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {DATABASE_GROUPS_6_2.map((g) => (
-                <div
-                  key={g.groupPt}
-                  className="rounded border border-border/70 bg-background/50 p-3"
-                >
-                  <span className="font-display text-xs font-bold text-primary">
-                    {isPt ? g.groupPt : g.groupEn}
-                  </span>
-                  <p className="mt-1 font-mono text-xs text-muted-foreground">{g.tables}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. SISTEMA SAAS E MONETIZAÇÃO (PLANS + MATRIX) */}
-      <section id="plans" className="border-t border-border bg-card/40">
-        <div className="mx-auto max-w-6xl px-5 py-20">
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-            {isPt ? "07 · SISTEMA SAAS E MONETIZAÇÃO" : "07 · SAAS SYSTEM & MONETIZATION"}
+            {isPt ? "ASSINATURAS E PLANOS SAAS" : "SAAS PLANS & PRICING"}
           </span>
           <h2 className="mt-2 font-display text-3xl font-bold">{t.plansTitle}</h2>
+
           <div className="mt-8 grid gap-5 md:grid-cols-4">
             {t.plans.map(([name, price, feats], i) => (
               <div
                 key={name}
-                className={`rounded-lg border p-6 ${
-                  i === 2 ? "border-primary shadow-glow" : "border-border"
-                } bg-card`}
+                className={`flex flex-col justify-between rounded-xl border p-6 ${
+                  i === 2 ? "border-primary bg-primary/5 shadow-glow" : "border-border bg-card"
+                }`}
               >
-                <h3 className="font-semibold">{name}</h3>
-                <p className="mt-3 font-display text-3xl font-bold">
-                  {i === 3 && (
-                    <span className="mr-1 text-sm font-normal text-muted-foreground">
-                      {t.from}
-                    </span>
-                  )}
-                  {price}
-                  <span className="text-sm font-normal text-muted-foreground">{t.perMonth}</span>
-                </p>
-                <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
-                  {feats.map((f) => (
-                    <li key={f}>— {f}</li>
-                  ))}
-                </ul>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-display text-lg font-bold">{name}</h3>
+                    {i === 2 && (
+                      <span className="rounded bg-primary px-2 py-0.5 font-mono text-[10px] font-bold text-primary-foreground">
+                        {isPt ? "RECOMENDADO" : "POPULAR"}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-3 font-display text-3xl font-bold">
+                    {i === 3 && (
+                      <span className="mr-1 text-xs font-normal text-muted-foreground">
+                        {t.from}
+                      </span>
+                    )}
+                    {price}
+                    <span className="text-xs font-normal text-muted-foreground">{t.perMonth}</span>
+                  </p>
+                  <ul className="mt-5 space-y-2 text-xs text-muted-foreground">
+                    {feats.map((f) => (
+                      <li key={f} className="flex items-start gap-2">
+                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Matriz comparativa 7.0 */}
-          <div className="mt-10 overflow-hidden rounded-lg border border-border bg-card">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-border bg-secondary/60 font-mono text-xs uppercase text-muted-foreground">
+          <div className="mt-10 overflow-hidden rounded-xl border border-border bg-card">
+            <table className="w-full text-left text-xs">
+              <thead className="border-b border-border bg-secondary/60 font-mono uppercase text-muted-foreground">
                 <tr>
                   <th className="px-4 py-3">{isPt ? "Recurso" : "Feature"}</th>
-                  <th className="px-4 py-3">Free</th>
-                  <th className="px-4 py-3">Pro</th>
-                  <th className="px-4 py-3 text-primary">Premium</th>
+                  <th className="px-4 py-3">{isPt ? "Gratuito" : "Free"}</th>
+                  <th className="px-4 py-3">{isPt ? "Profissional" : "Professional"}</th>
+                  <th className="px-4 py-3 text-primary">{isPt ? "Especialista" : "Specialist"}</th>
                   <th className="px-4 py-3">{isPt ? "Empresas" : "Enterprise"}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border text-xs">
+              <tbody className="divide-y divide-border">
                 {SAAS_COMPARISON_MATRIX_7.map((row) => (
                   <tr key={row.featurePt} className="hover:bg-secondary/30">
                     <td className="px-4 py-2.5 font-medium">
@@ -714,79 +424,7 @@ function Index() {
         </div>
       </section>
 
-      {/* 9, 10, 11 & 12 — SEGURANÇA, PLANEJAMENTO EM 10 ETAPAS E MVP */}
-      <section id="roadmap" className="border-t border-border py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="grid gap-8 lg:grid-cols-12">
-            {/* 10. Planejamento de desenvolvimento em 10 etapas */}
-            <div className="rounded-lg border border-border bg-card p-6 lg:col-span-7">
-              <span className="font-mono text-xs uppercase tracking-wider text-primary">
-                {isPt
-                  ? "10 · PLANEJAMENTO EM 10 ETAPAS NO GOOGLE ANTIGRAVITY"
-                  : "10 · 10-STAGE GOOGLE ANTIGRAVITY DEVELOPMENT PLAN"}
-              </span>
-              <h2 className="mt-1 font-display text-2xl font-bold">
-                {isPt
-                  ? "Entregas incrementais validadas etapa por etapa"
-                  : "Incremental deliveries validated stage by stage"}
-              </h2>
-              <div className="mt-4 divide-y divide-border text-sm">
-                {ANTIGRAVITY_ROADMAP_10.map((r) => (
-                  <div
-                    key={r.step}
-                    className="flex items-center justify-between py-2.5"
-                  >
-                    <div>
-                      <span className="mr-2.5 font-mono text-xs font-bold text-primary">
-                        {r.step}
-                      </span>
-                      <span className="font-medium">
-                        {isPt ? r.devPt : r.devEn}
-                      </span>
-                    </div>
-                    <span className="rounded bg-secondary px-2.5 py-0.5 font-mono text-xs text-muted-foreground">
-                      {isPt ? r.outPt : r.outEn}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 12. Escopo do MVP + 9. Segurança */}
-            <div className="space-y-6 lg:col-span-5">
-              <div className="rounded-lg border border-primary/40 bg-primary/5 p-6">
-                <span className="font-mono text-xs uppercase tracking-wider text-primary">
-                  {isPt ? "12 · PRIMEIRA VERSÃO COMERCIAL (MVP)" : "12 · FIRST COMMERCIAL VERSION (MVP)"}
-                </span>
-                <h3 className="mt-1 font-display text-xl font-bold">
-                  {isPt ? "12 Entregas Essenciais de Lançamento" : "12 Core Launch Deliverables"}
-                </h3>
-                <ul className="mt-3 grid grid-cols-1 gap-1.5 text-xs sm:grid-cols-2">
-                  {(isPt ? MVP_SCOPE_12.pt : MVP_SCOPE_12.en).map((item) => (
-                    <li key={item} className="flex items-center gap-1.5 text-foreground">
-                      <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="rounded-lg border border-border bg-card p-6">
-                <span className="font-mono text-xs uppercase tracking-wider text-primary">
-                  {isPt
-                    ? "09 · SEGURANÇA, LGPD & ISENÇÃO DE RESPONSABILIDADE TÉCNICA"
-                    : "09 · SECURITY, LGPD & TECHNICAL LIABILITY DISCLAIMER"}
-                </span>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                  {isPt ? SECURITY_CONTROLS_9.disclaimerPt : SECURITY_CONTROLS_9.disclaimerEn}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
+      <footer className="mt-auto border-t border-border py-8 text-center text-xs text-muted-foreground">
         © NexVolt ({t.brand.sub}) · {t.footer}
       </footer>
     </div>

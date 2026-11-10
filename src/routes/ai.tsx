@@ -197,8 +197,8 @@ function AiEnvironment() {
         <div className="border-b border-border pb-6">
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
             {isPt
-              ? "SEÇÃO 05 · O CORAÇÃO DA PLATAFORMA: ASSISTENTE TÉCNICO IA"
-              : "SECTION 05 · THE HEART OF THE PLATFORM: AI TECHNICAL ASSISTANT"}
+              ? "NÚCLEO CENTRAL · ASSISTENTE TÉCNICO IA"
+              : "CORE ENGINE · AI TECHNICAL ASSISTANT"}
           </span>
           <h1 className="mt-1 font-display text-3xl font-bold">
             {isPt
@@ -212,11 +212,13 @@ function AiEnvironment() {
           </p>
         </div>
 
-        {/* 5.1 AS 8 FUNCIONALIDADES DA IA */}
+        {/* AS 8 FUNCIONALIDADES DA IA */}
         <section className="mt-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="font-mono text-xs text-primary">5.1 FUNCIONALIDADES DA IA</span>
+              <span className="font-mono text-xs uppercase text-primary">
+                {isPt ? "ESPECIALISTAS & RECURSOS" : "SPECIALISTS & CAPABILITIES"}
+              </span>
               <h2 className="font-display text-xl font-bold">
                 {isPt ? "8 Capacidades Especializadas" : "8 Specialized Capabilities"}
               </h2>
@@ -287,12 +289,12 @@ function AiEnvironment() {
           </div>
         </section>
 
-        {/* 5.2 EXEMPLO DE UTILIZAÇÃO — FLUXO EM 8 ETAPAS */}
+        {/* EXEMPLO DE UTILIZAÇÃO — FLUXO EM 8 ETAPAS */}
         <section className="mt-10 rounded-xl border border-border bg-card p-6">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-4">
             <div>
               <span className="font-mono text-xs uppercase text-primary">
-                5.2 EXEMPLO DE UTILIZAÇÃO · ROTEIRO DE 8 ETAPAS
+                {isPt ? "PROTOCOLO DE DIAGNÓSTICO · ROTEIRO DE 8 ETAPAS" : "DIAGNOSTIC PROTOCOL · 8-STEP WORKFLOW"}
               </span>
               <h2 className="mt-1 font-display text-2xl font-bold">
                 “{isPt ? EIGHT_STEP_PROTOCOL_5_2.userQuestionPt : EIGHT_STEP_PROTOCOL_5_2.userQuestionEn}”
@@ -532,11 +534,11 @@ function AiEnvironment() {
           </div>
         </div>
 
-        {/* 5.3 ARQUITETURA DA INTELIGÊNCIA ARTIFICIAL */}
+        {/* ARQUITETURA DA INTELIGÊNCIA ARTIFICIAL */}
         <section className="mt-12 rounded-xl border border-border bg-card p-6">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
             <Layers className="h-4 w-4" />
-            5.3 ARQUITETURA DA INTELIGÊNCIA ARTIFICIAL
+            {isPt ? "ARQUITETURA DA INTELIGÊNCIA ARTIFICIAL" : "ARTIFICIAL INTELLIGENCE ARCHITECTURE"}
           </div>
           <h2 className="mt-1 font-display text-2xl font-bold">
             {isPt
@@ -632,11 +634,13 @@ function AiEnvironment() {
           </div>
         </section>
 
-        {/* 5.4 BANCO DE CONHECIMENTO RAG — ESTEIRA DE 10 ETAPAS */}
+        {/* BANCO DE CONHECIMENTO RAG — ESTEIRA DE 10 ETAPAS */}
         <section className="mt-10 rounded-xl border border-border bg-card p-6">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
             <Database className="h-4 w-4" />
-            5.4 BANCO DE CONHECIMENTO RAG (BUSCA TEXTUAL + VETORIAL PGVECTOR)
+            {isPt
+              ? "BANCO DE CONHECIMENTO RAG (BUSCA TEXTUAL + VETORIAL PGVECTOR)"
+              : "RAG KNOWLEDGE BASE (FULL-TEXT + PGVECTOR SEARCH)"}
           </div>
           <h2 className="mt-1 font-display text-2xl font-bold">
             {isPt

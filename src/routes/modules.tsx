@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FUNCTIONAL_MODULES, type FunctionalModule } from "@/lib/modules-data";
-import { ArrowRight, CheckCircle2, Grid, Search } from "lucide-react";
+import { ArrowRight, CheckCircle2, Grid, Layers, Search } from "lucide-react";
 
 export const Route = createFileRoute("/modules")({
   head: () => ({
@@ -49,7 +49,7 @@ function ModulesPage() {
           <div>
             <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.2em] text-primary">
               <Grid className="h-3.5 w-3.5" />
-              {isPt ? "ARQUITETURA MODULAR · 01 A 16" : "MODULAR ARCHITECTURE · 01 TO 16"}
+              {isPt ? "ARQUITETURA MODULAR · 16 MÓDULOS" : "MODULAR ARCHITECTURE · 16 MODULES"}
             </span>
             <h1 className="mt-1 font-display text-3xl font-bold">{t.modulesTitle}</h1>
             <p className="mt-1 max-w-3xl text-sm text-muted-foreground">{t.modulesSub}</p>
@@ -70,65 +70,62 @@ function ModulesPage() {
         {/* Active Module Deep-Dive Inspector */}
         <section className="mt-8 overflow-hidden rounded-xl border border-primary/50 bg-card shadow-glow">
           <div className="grid lg:grid-cols-12">
-            <div className="relative min-h-64 bg-secondary lg:col-span-5">
-              <img
-                src={selected.image}
-                alt={selected.imageAlt}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <span className="rounded bg-primary px-2.5 py-1 font-mono text-xs font-bold text-primary-foreground">
-                  {isPt ? `MÓDULO ${selected.num}` : `MODULE ${selected.num}`}
-                </span>
-                <h2 className="mt-2 font-display text-2xl font-bold text-foreground">
+            <div className="flex flex-col justify-between border-b border-border bg-secondary/40 p-6 lg:col-span-4 lg:border-b-0 lg:border-r">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="rounded bg-primary px-2.5 py-1 font-mono text-xs font-bold text-primary-foreground">
+                    {isPt ? `MÓDULO ${selected.num}` : `MODULE ${selected.num}`}
+                  </span>
+                  <Layers className="h-5 w-5 text-primary" />
+                </div>
+                <h2 className="mt-4 font-display text-2xl font-bold text-foreground">
                   {isPt ? selected.titlePt : selected.titleEn}
                 </h2>
-                <p className="mt-1 text-xs text-muted-foreground line-clamp-1">
-                  {selected.imageAlt}
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {isPt ? selected.descPt : selected.descEn}
                 </p>
+              </div>
+
+              <div className="mt-6 rounded-lg border border-border/80 bg-background/60 p-3.5">
+                <span className="block font-mono text-[10px] uppercase tracking-wider text-primary">
+                  {isPt ? "Referência Técnica" : "Technical Reference"}
+                </span>
+                <p className="mt-1 text-xs text-muted-foreground">{selected.imageAlt}</p>
               </div>
             </div>
 
-            <div className="flex flex-col justify-between p-6 lg:col-span-7">
-              <div>
-                <p className="text-base text-foreground">
-                  {isPt ? selected.descPt : selected.descEn}
-                </p>
+            <div className="flex flex-col justify-between p-6 lg:col-span-8">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h3 className="font-mono text-xs uppercase tracking-wider text-primary">
+                    {isPt ? "Funcionalidades-Chave" : "Key Capabilities"}
+                  </h3>
+                  <ul className="mt-3 space-y-2.5 text-xs text-muted-foreground">
+                    {(isPt ? selected.highlightsPt : selected.highlightsEn).map((h) => (
+                      <li key={h} className="flex items-start gap-2">
+                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+                        <span className="text-foreground/90">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                <div className="mt-5 grid gap-4 md:grid-cols-2">
-                  <div>
-                    <h3 className="font-mono text-xs uppercase tracking-wider text-primary">
-                      {isPt ? "Funcionalidades-Chave" : "Key Capabilities"}
-                    </h3>
-                    <ul className="mt-2.5 space-y-2 text-xs text-muted-foreground">
-                      {(isPt ? selected.highlightsPt : selected.highlightsEn).map((h) => (
-                        <li key={h} className="flex items-start gap-2">
-                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="font-mono text-xs uppercase tracking-wider text-primary">
-                      {isPt ? "Amostra Técnica Integrada" : "Integrated Technical Sample"}
-                    </h3>
-                    <div className="mt-2.5 space-y-2">
-                      {(isPt ? selected.sampleDataPt : selected.sampleDataEn).map((item) => (
-                        <div
-                          key={item.label}
-                          className="rounded border border-border/70 bg-background/60 p-2 text-xs"
-                        >
-                          <span className="block font-mono text-[11px] font-semibold text-primary">
-                            {item.label}
-                          </span>
-                          <span className="text-muted-foreground">{item.value}</span>
-                        </div>
-                      ))}
-                    </div>
+                <div>
+                  <h3 className="font-mono text-xs uppercase tracking-wider text-primary">
+                    {isPt ? "Amostra Técnica Integrada" : "Integrated Technical Sample"}
+                  </h3>
+                  <div className="mt-3 space-y-2.5">
+                    {(isPt ? selected.sampleDataPt : selected.sampleDataEn).map((item) => (
+                      <div
+                        key={item.label}
+                        className="rounded-md border border-border/70 bg-background/60 p-2.5 text-xs"
+                      >
+                        <span className="block font-mono text-[11px] font-semibold text-primary">
+                          {item.label}
+                        </span>
+                        <span className="mt-0.5 block text-muted-foreground">{item.value}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -150,8 +147,8 @@ function ModulesPage() {
           </div>
         </section>
 
-        {/* Grid of all 16 Functional Modules with images */}
-        <section className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Grid of all 16 Functional Modules */}
+        <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {filteredModules.map((mod) => {
             const isSelected = mod.id === selected.id;
             return (
@@ -162,38 +159,31 @@ function ModulesPage() {
                   setSelected(mod);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className={`group flex flex-col overflow-hidden rounded-lg border text-left transition-all ${
+                className={`group flex flex-col justify-between rounded-xl border p-5 text-left transition-all ${
                   isSelected
-                    ? "border-primary bg-secondary/70 shadow-glow"
-                    : "border-border bg-card hover:border-primary/60 hover:bg-secondary/40"
+                    ? "border-primary bg-primary/10 shadow-glow"
+                    : "border-border bg-card hover:border-primary/50 hover:bg-secondary/40"
                 }`}
               >
-                <div className="relative h-36 w-full overflow-hidden bg-secondary">
-                  <img
-                    src={mod.image}
-                    alt={mod.imageAlt}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <span className="absolute left-3 top-3 rounded bg-background/90 px-2 py-0.5 font-mono text-xs font-bold text-primary">
-                    {mod.num}
-                  </span>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded bg-primary/15 px-2.5 py-0.5 font-mono text-xs font-bold text-primary">
+                      {mod.num}
+                    </span>
+                    <span className="font-mono text-[11px] text-muted-foreground">
+                      {mod.environmentRoute}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-display text-base font-bold group-hover:text-primary">
+                    {isPt ? mod.titlePt : mod.titleEn}
+                  </h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                    {isPt ? mod.descPt : mod.descEn}
+                  </p>
                 </div>
-
-                <div className="flex flex-1 flex-col justify-between p-4">
-                  <div>
-                    <h3 className="font-display text-base font-bold group-hover:text-primary">
-                      {isPt ? mod.titlePt : mod.titleEn}
-                    </h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                      {isPt ? mod.descPt : mod.descEn}
-                    </p>
-                  </div>
-                  <div className="mt-4 flex items-center justify-between border-t border-border/50 pt-2.5 font-mono text-[11px] text-primary">
-                    <span>{isPt ? "Inspecionar módulo" : "Inspect module"}</span>
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                  </div>
+                <div className="mt-4 flex items-center justify-between border-t border-border/50 pt-3 font-mono text-[11px] text-primary">
+                  <span>{isPt ? "Inspecionar módulo" : "Inspect module"}</span>
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </div>
               </button>
             );
@@ -203,4 +193,3 @@ function ModulesPage() {
     </div>
   );
 }
-

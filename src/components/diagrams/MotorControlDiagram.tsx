@@ -13,8 +13,10 @@ export function MotorControlDiagram() {
     <div className="rounded-lg border border-border bg-card p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <span className="font-mono text-xs text-primary">
-            components/diagrams/MotorControlDiagram
+          <span className="font-mono text-xs uppercase tracking-wider text-primary">
+            {isPt
+              ? "COMANDOS ELÉTRICOS · SIMULAÇÃO INTERATIVA"
+              : "ELECTRICAL CONTROLS · INTERACTIVE SIMULATION"}
           </span>
           <h3 className="font-display text-base font-bold">
             {isPt

@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { SiteHeader } from "@/components/SiteHeader";
-import { EnvironmentQuickBar } from "@/components/navigation/EnvironmentQuickBar";
 import { MotorControlDiagram } from "@/components/diagrams/MotorControlDiagram";
 import {
   BookOpen,
@@ -141,12 +140,12 @@ function UserEnvironment() {
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-              {isPt ? "AMBIENTE 01 · AMBIENTE DO USUÁRIO" : "ENVIRONMENT 01 · USER ENVIRONMENT"}
+              {isPt ? "PAINEL TÉCNICO · NEXVOLT" : "TECHNICAL DASHBOARD · NEXVOLT"}
             </span>
             <h1 className="mt-1 font-display text-3xl font-bold">
               {isPt
-                ? "Dashboard, Biblioteca Técnica, Automação e Cursos"
-                : "Dashboard, Technical Library, Automation & Courses"}
+                ? "Painel Técnico, Biblioteca, Automação e Cursos"
+                : "Technical Dashboard, Library, Automation & Courses"}
             </h1>
             <p className="mt-1 text-sm text-muted-foreground">
               {isPt
@@ -170,10 +169,6 @@ function UserEnvironment() {
               {isPt ? "Calculadoras" : "Calculators"}
             </Link>
           </div>
-        </div>
-
-        <div className="mt-4">
-          <EnvironmentQuickBar />
         </div>
 
         {/* Quick stats */}

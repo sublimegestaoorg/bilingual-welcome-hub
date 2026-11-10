@@ -109,8 +109,8 @@ function AdminEnvironment() {
         <div className="border-b border-border pb-6">
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
             {isPt
-              ? "SEÇÃO 08 · PAINEL ADMINISTRATIVO & GOVERNANÇA"
-              : "SECTION 08 · ADMINISTRATIVE PANEL & GOVERNANCE"}
+              ? "PAINEL ADMINISTRATIVO & GOVERNANÇA"
+              : "ADMINISTRATIVE PANEL & GOVERNANCE"}
           </span>
           <h1 className="mt-1 font-display text-3xl font-bold">
             {isPt
@@ -124,13 +124,13 @@ function AdminEnvironment() {
           </p>
         </div>
 
-        {/* 8.1 DASHBOARD ADMINISTRATIVO (10 INDICADORES) */}
+        {/* DASHBOARD ADMINISTRATIVO (10 INDICADORES) */}
         <section className="mt-8">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary">
             <TrendingUp className="h-4 w-4" />
             {isPt
-              ? "8.1 DASHBOARD ADMINISTRATIVO — 10 INDICADORES DE OPERAÇÃO"
-              : "8.1 ADMIN DASHBOARD — 10 OPERATIONAL INDICATORS"}
+              ? "INDICADORES EXECUTIVOS DE OPERAÇÃO"
+              : "EXECUTIVE OPERATIONAL INDICATORS"}
           </div>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {ADMIN_TEN_KPIS.map((kpi) => (
@@ -157,7 +157,7 @@ function AdminEnvironment() {
               <div>
                 <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary">
                   <Factory className="h-4 w-4" />
-                  {isPt ? "8.2 GESTÃO DE CONTEÚDO (10 DOMÍNIOS)" : "8.2 CONTENT MANAGEMENT (10 DOMAINS)"}
+                  {isPt ? "GESTÃO DE CONTEÚDO TÉCNICO" : "TECHNICAL CONTENT MANAGEMENT"}
                 </div>
                 <h2 className="mt-1 font-display text-xl font-bold">
                   {isPt ? "Curadoria Técnica e Revisões" : "Technical Curation & Reviews"}
@@ -237,12 +237,12 @@ function AdminEnvironment() {
             </div>
           </div>
 
-          {/* 8.3 Gestão da IA & 8.4 Gestão Comercial */}
+          {/* Gestão da IA & Gestão Comercial */}
           <div className="space-y-6 lg:col-span-5">
             <div className="rounded-lg border border-border bg-card p-6">
               <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary">
                 <Cpu className="h-4 w-4" />
-                {isPt ? "8.3 GESTÃO DA IA" : "8.3 AI GOVERNANCE"}
+                {isPt ? "GOVERNANÇA DA IA" : "AI GOVERNANCE"}
               </div>
               <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
                 <li className="flex items-center justify-between border-b border-border/50 pb-1.5">
@@ -271,7 +271,7 @@ function AdminEnvironment() {
             <div className="rounded-lg border border-border bg-card p-6">
               <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary">
                 <CreditCard className="h-4 w-4" />
-                {isPt ? "8.4 GESTÃO COMERCIAL (ASAAS / MERCADO PAGO)" : "8.4 COMMERCIAL MANAGEMENT"}
+                {isPt ? "GESTÃO COMERCIAL & ASSINATURAS" : "COMMERCIAL & SUBSCRIPTION MANAGEMENT"}
               </div>
               <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
                 <li className="flex items-center justify-between border-b border-border/50 pb-1.5">
@@ -295,13 +295,13 @@ function AdminEnvironment() {
           </div>
         </div>
 
-        {/* 6.2 BANCO DE DADOS POSTGRESQL (12 GRUPOS DE TABELAS + REGRAS ESSENCIAIS) */}
+        {/* BANCO DE DADOS POSTGRESQL */}
         <section className="mt-10 rounded-xl border border-border bg-card p-6">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
             <Database className="h-4 w-4" />
             {isPt
-              ? "6.2 BANCO DE DADOS POSTGRESQL + SUPABASE RLS + PGVECTOR"
-              : "6.2 POSTGRESQL DATABASE SCHEMA + SUPABASE RLS + PGVECTOR"}
+              ? "ARQUITETURA DE DADOS · POSTGRESQL + SUPABASE RLS + PGVECTOR"
+              : "DATA ARCHITECTURE · POSTGRESQL + SUPABASE RLS + PGVECTOR"}
           </div>
           <h2 className="mt-1 font-display text-2xl font-bold">
             {isPt
@@ -345,13 +345,13 @@ function AdminEnvironment() {
           </div>
         </section>
 
-        {/* 9. SEGURANÇA, CONFIABILIDADE E CONFORMIDADE */}
+        {/* SEGURANÇA, CONFIABILIDADE E CONFORMIDADE */}
         <section className="mt-8 rounded-xl border border-border bg-card p-6">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
             <ShieldCheck className="h-4 w-4" />
             {isPt
-              ? "09 · SEGURANÇA, CONFIABILIDADE E CONFORMIDADE TÉCNICA"
-              : "09 · SECURITY, RELIABILITY & TECHNICAL COMPLIANCE"}
+              ? "SEGURANÇA, CONFIABILIDADE E CONFORMIDADE TÉCNICA"
+              : "SECURITY, RELIABILITY & TECHNICAL COMPLIANCE"}
           </div>
           <ul className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 text-xs text-muted-foreground">
             {(isPt ? SECURITY_CONTROLS_9.pt : SECURITY_CONTROLS_9.en).map((ctrl) => (

@@ -133,7 +133,7 @@ function EnterpriseEnvironment() {
       <main className="mx-auto max-w-6xl px-5 py-10">
         <div className="border-b border-border pb-6">
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-            {isPt ? "AMBIENTE 03 · AMBIENTE EMPRESARIAL" : "ENVIRONMENT 03 · ENTERPRISE ENVIRONMENT"}
+            {isPt ? "AMBIENTE EMPRESARIAL · MULTI-PLANTA" : "ENTERPRISE ENVIRONMENT · MULTI-PLANT"}
           </span>
           <h1 className="mt-1 font-display text-3xl font-bold">
             {isPt

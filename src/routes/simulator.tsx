@@ -13,6 +13,7 @@ import {
   Wrench,
   FileSpreadsheet,
   ShieldAlert,
+  Zap,
 } from "lucide-react";
 
 export const Route = createFileRoute("/simulator")({
@@ -173,14 +174,14 @@ function SimulatorPage() {
           </p>
         </div>
 
-        {/* 5 Motores Especializados do Simulador Avançado (Seção 2.6) */}
+        {/* 5 Motores Especializados do Simulador Avançado */}
         <section className="mt-8">
           <div className="flex flex-wrap items-end justify-between gap-2">
             <div>
               <span className="font-mono text-xs uppercase text-primary">
                 {isPt
-                  ? "2.6 ARQUITETURA DE SIMULAÇÃO · 5 MOTORES ESPECIALIZADOS VALIDÁVEIS"
-                  : "2.6 SIMULATION ARCHITECTURE · 5 VALIDATED SPECIALIZED ENGINES"}
+                  ? "ARQUITETURA DE SIMULAÇÃO · 5 MOTORES ESPECIALIZADOS VALIDÁVEIS"
+                  : "SIMULATION ARCHITECTURE · 5 VALIDATED SPECIALIZED ENGINES"}
               </span>
               <h2 className="mt-1 font-display text-2xl font-bold">
                 {isPt
@@ -190,37 +191,36 @@ function SimulatorPage() {
             </div>
             <span className="rounded border border-primary/40 bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
               {isPt
-                ? "Regra: Motor valida cálculos · IA apoia e interpreta"
-                : "Rule: Engine validates math · AI assists & interprets"}
+                ? "Motor valida cálculos · IA apoia e interpreta"
+                : "Engine validates math · AI assists & interprets"}
             </span>
           </div>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {FIVE_SIMULATION_ENGINES_2_6.map((eng) => (
+            {FIVE_SIMULATION_ENGINES_2_6.map((eng, idx) => (
               <div
                 key={eng.id}
-                className="flex flex-col overflow-hidden rounded-lg border border-border bg-card"
+                className="flex flex-col justify-between rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/40"
               >
-                <div className="relative h-32 w-full overflow-hidden bg-secondary">
-                  <img
-                    src={eng.image}
-                    alt={isPt ? eng.namePt : eng.nameEn}
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
-                  <span className="absolute bottom-2 left-2.5 font-mono text-[10px] text-primary">
-                    {eng.pkg}
-                  </span>
-                </div>
-                <div className="p-3.5">
-                  <h3 className="font-display text-sm font-bold">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Zap className="h-4 w-4" />
+                    </span>
+                    <span className="font-mono text-[10px] font-bold text-primary">
+                      M0{idx + 1}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-display text-sm font-bold">
                     {isPt ? eng.namePt : eng.nameEn}
                   </h3>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                     {isPt ? eng.descPt : eng.descEn}
                   </p>
                 </div>
+                <span className="mt-3 block truncate border-t border-border/60 pt-2 font-mono text-[10px] text-muted-foreground">
+                  {eng.pkg}
+                </span>
               </div>
             ))}
           </div>
