@@ -59,3 +59,4 @@ describe("Multi-tenant RLS & SaaS Quotas (Fase 02)", () => {
     expect(proAi.remaining).toBe(100);
   });
 });
+
