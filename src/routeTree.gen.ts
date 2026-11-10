@@ -10,11 +10,47 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AiRouteImport } from './routes/ai'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as EnterpriseRouteImport } from './routes/enterprise'
+import { Route as ModulesRouteImport } from './routes/modules'
+import { Route as SimulatorRouteImport } from './routes/simulator'
 import { Route as ToolsRouteImport } from './routes/tools'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnterpriseRoute = EnterpriseRouteImport.update({
+  id: '/enterprise',
+  path: '/enterprise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModulesRoute = ModulesRouteImport.update({
+  id: '/modules',
+  path: '/modules',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SimulatorRoute = SimulatorRouteImport.update({
+  id: '/simulator',
+  path: '/simulator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolsRoute = ToolsRouteImport.update({
@@ -25,27 +61,76 @@ const ToolsRoute = ToolsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/ai': typeof AiRoute
+  '/dashboard': typeof DashboardRoute
+  '/enterprise': typeof EnterpriseRoute
+  '/modules': typeof ModulesRoute
+  '/simulator': typeof SimulatorRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/ai': typeof AiRoute
+  '/dashboard': typeof DashboardRoute
+  '/enterprise': typeof EnterpriseRoute
+  '/modules': typeof ModulesRoute
+  '/simulator': typeof SimulatorRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/ai': typeof AiRoute
+  '/dashboard': typeof DashboardRoute
+  '/enterprise': typeof EnterpriseRoute
+  '/modules': typeof ModulesRoute
+  '/simulator': typeof SimulatorRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tools'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/ai'
+    | '/dashboard'
+    | '/enterprise'
+    | '/modules'
+    | '/simulator'
+    | '/tools'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tools'
-  id: '__root__' | '/' | '/tools'
+  to:
+    | '/'
+    | '/admin'
+    | '/ai'
+    | '/dashboard'
+    | '/enterprise'
+    | '/modules'
+    | '/simulator'
+    | '/tools'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/ai'
+    | '/dashboard'
+    | '/enterprise'
+    | '/modules'
+    | '/simulator'
+    | '/tools'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  AiRoute: typeof AiRoute
+  DashboardRoute: typeof DashboardRoute
+  EnterpriseRoute: typeof EnterpriseRoute
+  ModulesRoute: typeof ModulesRoute
+  SimulatorRoute: typeof SimulatorRoute
   ToolsRoute: typeof ToolsRoute
 }
 
@@ -56,6 +141,48 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enterprise': {
+      id: '/enterprise'
+      path: '/enterprise'
+      fullPath: '/enterprise'
+      preLoaderRoute: typeof EnterpriseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modules': {
+      id: '/modules'
+      path: '/modules'
+      fullPath: '/modules'
+      preLoaderRoute: typeof ModulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/simulator': {
+      id: '/simulator'
+      path: '/simulator'
+      fullPath: '/simulator'
+      preLoaderRoute: typeof SimulatorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools': {
@@ -70,6 +197,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  AiRoute: AiRoute,
+  DashboardRoute: DashboardRoute,
+  EnterpriseRoute: EnterpriseRoute,
+  ModulesRoute: ModulesRoute,
+  SimulatorRoute: SimulatorRoute,
   ToolsRoute: ToolsRoute,
 }
 export const routeTree = rootRouteImport
